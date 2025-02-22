@@ -214,7 +214,7 @@
         padding-top: 80px; /* 헤더 높이에 따른 상단 여백 추가 */
       }
       nav ul {
-        flex-direction: row;      /* 가로 정렬 유지 */
+        flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
       }
@@ -245,11 +245,23 @@
         bottom: 65px;
       }
     }
+    
+    /* 스크롤 애니메이션 초기 상태 */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+    /* 스크롤 애니메이션 활성 상태 */
+    .scroll-animate.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
   <!-- 헤더 및 네비게이션 (상단 배너 위에 오버레이) -->
-  <header>
+  <header class="scroll-animate">
     <nav>
       <ul>
         <li><a href="#hero">홈</a></li>
@@ -262,7 +274,7 @@
   </header>
   
   <!-- Hero 섹션 (상단 배너) -->
-  <section id="hero">
+  <section id="hero" class="scroll-animate">
     <!-- 상단 배너 배경 영상 -->
     <video class="hero-bg" autoplay muted loop playsinline>
       <source src="image/back/banner_mov.mp4" type="video/mp4">
@@ -274,17 +286,7 @@
   </section>
   
   <!-- 소개 섹션 -->
-  <section id="about" class="full-width-section">
-    <img class="section-bg" src="https://example.com/path/to/about-image.jpg" alt="소개 배경 이미지">
-    <div class="content-container">
-      <h2>"Protect your business"</h2>
-      <p>악성 게시물로 인해 고통받는 당신을 위한 24시 연중무휴 신속 대응으로 국내 삭제율 1위를 지켜내고 있는</p>
-      <p>디지털 장의사 앤드의 수년간의 노하우를 통해 여러분들의 기업 및 개인 온라인 평판에 기여합니다.</p>
-    </div>
-  </section>
-  
-  <!-- 추가된 동일한 소개 섹션 (중복 id 사용 주의) -->
-  <section id="about-duplicate" class="full-width-section">
+  <section id="about" class="full-width-section scroll-animate">
     <img class="section-bg" src="https://example.com/path/to/about-image.jpg" alt="소개 배경 이미지">
     <div class="content-container">
       <h2>"Protect your business"</h2>
@@ -294,7 +296,7 @@
   </section>
   
   <!-- 언론 섹션 -->
-  <section id="blog" class="full-width-section">
+  <section id="blog" class="full-width-section scroll-animate">
     <img class="section-bg" src="https://example.com/path/to/blog-image.jpg" alt="블로그 배경 이미지">
     <div class="content-container">
       <h2>기사로 보는 디지털 장의사 앤드</h2>
@@ -309,7 +311,7 @@
   </section>
   
   <!-- 문의 섹션 -->
-  <section id="contact" class="full-width-section">
+  <section id="contact" class="full-width-section scroll-animate">
     <img class="section-bg" src="https://example.com/path/to/contact-image.jpg" alt="문의 배경 이미지">
     <div class="content-container">
       <h2>문의</h2>
@@ -335,7 +337,7 @@
   <button id="kakaoButton" class="floating-button" onclick="goToKakao()">KakaoTalk</button>
   
   <!-- 푸터 및 사업자 정보 -->
-  <footer>
+  <footer class="scroll-animate">
     <div class="business-info">
       <p><strong>상호명:</strong> 디지털 장의사 앤드</p>
       <p><strong>대표자명:</strong> 홍길동</p>
@@ -348,7 +350,7 @@
   
   <!-- 스크롤 시 Back to Top 버튼 보이기 및 최상단 이동 스크립트 -->
   <script>
-    // 스크롤 이벤트 발생 시 TOP 버튼 표시/숨기기
+    // Back to Top 버튼 스크롤 이벤트
     window.onscroll = function() {
       var backToTop = document.getElementById("backToTop");
       if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
@@ -365,9 +367,23 @@
     
     // KakaoTalk 버튼 클릭 시 카카오톡 오픈채팅 링크로 이동
     function goToKakao() {
-      // 원하는 카카오톡 오픈채팅 링크로 수정
       window.location.href = "https://open.kakao.com/o/ssKou8xf";
     }
+    
+    // Intersection Observer를 통한 스크롤 애니메이션 적용
+    document.addEventListener('DOMContentLoaded', function() {
+      const scrollElements = document.querySelectorAll('.scroll-animate');
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      scrollElements.forEach(el => observer.observe(el));
+    });
   </script>
 </body>
 </html>
