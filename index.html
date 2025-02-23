@@ -59,11 +59,11 @@
     nav ul li a:hover {
       color: #007bff;
     }
-    /* Hero Section - 16:9 비율 유지 */
+    /* Hero 섹션 - 고정 높이(40vh) 적용 */
     #hero {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      height: 40vh; /* 기본 높이 40vh */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -345,6 +345,10 @@
       #stats .stat h3 {
         font-size: 2rem;
       }
+      /* Hero 섹션 높이 조정 */
+      #hero {
+        height: 35vh;
+      }
     }
     
     /* 반응형 디자인 (480px 이하) */
@@ -375,6 +379,10 @@
       #contact form {
         max-width: 90%;
         padding: 20px;
+      }
+      /* Hero 섹션 높이 더 축소 */
+      #hero {
+        height: 30vh;
       }
     }
   </style>
