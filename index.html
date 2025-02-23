@@ -88,6 +88,7 @@
     /* 내부 콘텐츠 컨테이너 */
     .content-container {
       max-width: 1200px;
+      width: 90%;
       margin: 0 auto;
       padding: 0 20px;
       text-align: center;
@@ -182,42 +183,6 @@
       color: #3c1e1e;
       display: block;
     }
-    /* 반응형 디자인 */
-    @media (max-width: 768px) {
-      #hero {
-        height: 40vh;
-        padding-top: 80px;
-      }
-      nav ul {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      nav ul li {
-        margin: 0 10px;
-      }
-      .content-container h2 {
-        font-size: 28px;
-      }
-      .content-container p {
-        font-size: 16px;
-      }
-      #news .news-item {
-        flex: 1 1 calc(50% - 20px);
-      }
-      .floating-button {
-        padding: 8px 12px;
-        right: 15px;
-        font-size: 14px;
-      }
-      #backToTop {
-        bottom: 15px;
-      }
-      #kakaoButton {
-        bottom: 65px;
-      }
-    }
-    
     /* 스크롤 애니메이션 */
     .scroll-animate {
       opacity: 0;
@@ -228,7 +193,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-    
     /* ★ 카운터 섹션 스타일 ★ */
     #stats {
       background-color: #222;
@@ -266,7 +230,6 @@
       margin: 10px 0 0;
       font-size: 1.2rem;
     }
-    
     /* ★ 소개 섹션 ("Protect your business") ★ */
     #about {
       position: relative;
@@ -285,8 +248,7 @@
       font-size: 1.2rem;
       margin-bottom: 10px;
     }
-    
-    /* ★ NEWS 섹션 스타일 (아워웹 NEWS와 유사) ★ */
+    /* ★ NEWS 섹션 스타일 (아워웹 NEWS 섹션과 유사) ★ */
     #news {
       position: relative;
       background-color: #333;
@@ -342,6 +304,80 @@
     }
     #news .news-content a:hover {
       text-decoration: underline;
+    }
+    
+    /* 반응형 디자인 (768px 이하) */
+    @media (max-width: 768px) {
+      #hero {
+        height: 40vh;
+        padding-top: 80px;
+      }
+      nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      nav ul li {
+        margin: 0 10px;
+      }
+      .content-container h2 {
+        font-size: 28px;
+      }
+      .content-container p {
+        font-size: 16px;
+      }
+      #news .news-item {
+        flex: 1 1 calc(50% - 20px);
+      }
+      .floating-button {
+        padding: 8px 12px;
+        right: 15px;
+        font-size: 14px;
+      }
+      #backToTop {
+        bottom: 15px;
+      }
+      #kakaoButton {
+        bottom: 65px;
+      }
+      /* 카운터 섹션: 요소들을 세로로 배치 */
+      #stats .stats-wrapper {
+        flex-direction: column;
+        gap: 20px;
+      }
+      #stats .stat h3 {
+        font-size: 2rem;
+      }
+    }
+    
+    /* 추가 반응형 디자인 (480px 이하) */
+    @media (max-width: 480px) {
+      nav ul {
+        flex-direction: column;
+      }
+      nav ul li {
+        margin: 5px 0;
+      }
+      .content-container {
+        padding: 0 10px;
+      }
+      .content-container h2 {
+        font-size: 24px;
+      }
+      .content-container p {
+        font-size: 14px;
+      }
+      #news .news-items {
+        flex-direction: column;
+        gap: 20px;
+      }
+      #news .news-item {
+        flex: 1 1 100%;
+      }
+      #contact form {
+        max-width: 90%;
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -400,7 +436,7 @@
     </div>
   </section>
   
-  <!-- ★ NEWS 섹션 (아워웹 NEWS 섹션과 유사) ★ -->
+  <!-- ★ NEWS 섹션 (아워웹 NEWS와 유사) ★ -->
   <section id="news" class="full-width-section scroll-animate">
     <!-- 배경 이미지 (실제 URL로 변경 필요) -->
     <img class="section-bg" src="https://www.ourweb.co.kr/images/news-bg.jpg" alt="NEWS 배경 이미지">
