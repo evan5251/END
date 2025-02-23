@@ -28,14 +28,14 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(17, 17, 17, 0.8); /* 약간 투명한 배경 */
+      background: rgba(17, 17, 17, 0.8);
       z-index: 10;
       padding: 20px 0;
       box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
     header nav {
       display: flex;
-      justify-content: center; /* 중앙 정렬 */
+      justify-content: center;
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
@@ -62,14 +62,13 @@
     /* Hero Section (상단 배너) */
     #hero {
       position: relative;
-      height: 50vh; /* 뷰포트 높이의 50% */
+      height: 50vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       overflow: hidden;
     }
-    /* 상단 배너 배경 영상 - 부모 영역 전체를 덮도록 함 */
     .hero-bg {
       position: absolute;
       top: 0;
@@ -79,11 +78,11 @@
       object-fit: cover;
       z-index: -1;
     }
-    /* 풀-폭 섹션 스타일 (소개, 블로그, 문의 등) */
+    /* 풀-폭 섹션 스타일 */
     .full-width-section {
       position: relative;
       overflow: hidden;
-      background-color: #333; /* 백업 배경색 */
+      background-color: #333;
       padding: 60px 0;
     }
     /* 내부 콘텐츠 컨테이너 */
@@ -103,7 +102,7 @@
       object-fit: cover;
       z-index: -1;
     }
-    /* 블로그 섹션 내부 블로그 포스트 스타일 */
+    /* 블로그 포스트 스타일 */
     .blog-post {
       margin: 20px 0;
       text-align: left;
@@ -193,25 +192,23 @@
     .floating-button:hover {
       opacity: 1;
     }
-    /* TOP 버튼: 빨간색 (기존 스타일 유지) */
     #backToTop {
       bottom: 20px;
       background: #ff5555;
       color: #fff;
-      display: none; /* 스크롤 시에만 표시 */
+      display: none;
     }
-    /* KakaoTalk 버튼: 이전에 좋았던 노란색 스타일 */
     #kakaoButton {
       bottom: 70px;
       background: #f7e600;
       color: #3c1e1e;
-      display: block; /* 항상 표시 */
+      display: block;
     }
     /* 반응형 디자인 */
     @media (max-width: 768px) {
       #hero {
         height: 40vh;
-        padding-top: 80px; /* 헤더 높이에 따른 상단 여백 추가 */
+        padding-top: 80px;
       }
       nav ul {
         flex-direction: row;
@@ -257,10 +254,47 @@
       opacity: 1;
       transform: translateY(0);
     }
+    
+    /* ★ 카운터 섹션 스타일 ★ */
+    #stats {
+      background-color: #222;
+      padding: 40px 0;
+    }
+    #stats .content-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #stats h2 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    #stats .stats-wrapper {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    #stats .stat {
+      text-align: center;
+      margin: 20px;
+    }
+    #stats .stat h3 {
+      font-size: 2.5rem;
+      margin: 0;
+      font-weight: bold;
+    }
+    #stats .stat p {
+      margin: 10px 0 0;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
-  <!-- 헤더 및 네비게이션 (상단 배너 위에 오버레이) -->
+  <!-- 헤더 및 네비게이션 -->
   <header class="scroll-animate">
     <nav>
       <ul>
@@ -275,13 +309,33 @@
   
   <!-- Hero 섹션 (상단 배너) -->
   <section id="hero" class="scroll-animate">
-    <!-- 상단 배너 배경 영상 -->
     <video class="hero-bg" autoplay muted loop playsinline>
       <source src="image/back/banner_mov.mp4" type="video/mp4">
-      <!-- 최신 브라우저에서는 이 fallback 메시지가 보이지 않습니다 -->
     </video>
     <div class="content">
       <!-- 상단 배너 내 텍스트 제거 -->
+    </div>
+  </section>
+  
+  <!-- ★ 카운터 섹션 (누적 삭제건, 고객 만족도, 재의뢰율) ★ -->
+  <section id="stats" class="full-width-section scroll-animate">
+    <div class="content-container">
+      <!-- 선택 메시지 추가 -->
+      <h2>수많은 기업이 디지털 장의사 앤드를 선택한 이유.</h2>
+      <div class="stats-wrapper">
+        <div class="stat">
+          <h3 id="project-counter" data-target="6294">0</h3>
+          <p>누적 삭제건</p>
+        </div>
+        <div class="stat">
+          <h3 id="satisfaction-counter" data-target="98">0</h3>
+          <p>고객 만족도(%)</p>
+        </div>
+        <div class="stat">
+          <h3 id="repeat-counter" data-target="89">0</h3>
+          <p>재의뢰율(%)</p>
+        </div>
+      </div>
     </div>
   </section>
   
@@ -336,7 +390,7 @@
   <!-- KakaoTalk 링크 버튼 -->
   <button id="kakaoButton" class="floating-button" onclick="goToKakao()">KakaoTalk</button>
   
-  <!-- 푸터 및 사업자 정보 -->
+  <!-- 푸터 -->
   <footer class="scroll-animate">
     <div class="business-info">
       <p><strong>상호명:</strong> 디지털 장의사 앤드</p>
@@ -348,7 +402,7 @@
     <p>&copy; 2025 디지털 장의사 앤드. All Rights Reserved.</p>
   </footer>
   
-  <!-- 스크롤 시 Back to Top 버튼 보이기 및 최상단 이동 스크립트 -->
+  <!-- 스크립트 -->
   <script>
     // Back to Top 버튼 스크롤 이벤트
     window.onscroll = function() {
@@ -365,12 +419,12 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
-    // KakaoTalk 버튼 클릭 시 카카오톡 오픈채팅 링크로 이동
+    // KakaoTalk 버튼 클릭 시 오픈채팅으로 이동
     function goToKakao() {
       window.location.href = "https://open.kakao.com/o/ssKou8xf";
     }
     
-    // Intersection Observer를 통한 스크롤 애니메이션 적용
+    // 스크롤 애니메이션 (Intersection Observer)
     document.addEventListener('DOMContentLoaded', function() {
       const scrollElements = document.querySelectorAll('.scroll-animate');
       const observer = new IntersectionObserver((entries, observer) => {
@@ -383,6 +437,42 @@
       }, { threshold: 0.2 });
       
       scrollElements.forEach(el => observer.observe(el));
+    });
+    
+    // ★ 카운터 애니메이션 함수 ★
+    function animateCounter(el, duration = 2000) {
+      const target = +el.getAttribute('data-target');
+      let start = 0;
+      const increment = target / (duration / 16);
+
+      function updateCounter() {
+        start += increment;
+        if (start < target) {
+          el.innerText = Math.ceil(start);
+          requestAnimationFrame(updateCounter);
+        } else {
+          el.innerText = target;
+        }
+      }
+      updateCounter();
+    }
+
+    // 카운터 섹션이 보일 때 애니메이션 시작
+    document.addEventListener('DOMContentLoaded', function() {
+      const statsSection = document.getElementById('stats');
+      if (statsSection) {
+        const counters = statsSection.querySelectorAll('h3');
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              counters.forEach(counter => animateCounter(counter));
+              observer.unobserve(statsSection);
+            }
+          });
+        }, { threshold: 0.5 });
+        
+        statsObserver.observe(statsSection);
+      }
     });
   </script>
 </body>
