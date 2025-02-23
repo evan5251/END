@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>디지털 장의사 앤드</title>
   
-  <!-- 검색 엔진 크롤링을 위한 설정 -->
+  <!-- 검색 엔진 크롤링 -->
   <meta name="robots" content="index, follow">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://디지털장의사앤드.com/sitemap.xml">
   
-  <!-- 디지털 감성을 위한 Google Font (Orbitron) -->
+  <!-- Google Font (Orbitron) -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   
   <style>
@@ -18,20 +18,20 @@
       margin: 0;
       padding: 0;
       font-family: 'Orbitron', Arial, sans-serif;
-      background-color: #222;
-      color: #eee;
+      background-color: #fff;
+      color: #333;
       line-height: 1.6;
     }
-    /* 헤더 및 네비게이션 - 상단 배너 위에 오버레이 */
+    /* 헤더 및 네비게이션 */
     header {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(17, 17, 17, 0.8);
-      z-index: 10;
-      padding: 20px 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      background: #fff;
+      z-index: 1000;
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
     }
     header nav {
       display: flex;
@@ -39,7 +39,6 @@
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
-      flex-wrap: wrap;
       padding: 0 20px;
     }
     nav ul {
@@ -52,14 +51,15 @@
       margin: 0 20px;
     }
     nav ul li a {
-      color: #eee;
+      color: #333;
       text-decoration: none;
+      font-weight: 700;
       transition: color 0.3s;
     }
     nav ul li a:hover {
-      color: #ff5555;
+      color: #007bff;
     }
-    /* Hero Section (상단 배너) - aspect-ratio를 이용해 16:9 비율 유지 */
+    /* Hero Section - 16:9 비율 유지 */
     #hero {
       position: relative;
       width: 100%;
@@ -67,8 +67,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
       overflow: hidden;
+      margin-top: 70px; /* 헤더 높이 고려 */
     }
     .hero-bg {
       position: absolute;
@@ -83,7 +83,7 @@
     .full-width-section {
       position: relative;
       overflow: hidden;
-      background-color: #333;
+      background-color: #f9f9f9;
       padding: 60px 0;
     }
     /* 내부 콘텐츠 컨테이너 */
@@ -105,15 +105,16 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
+      opacity: 0.15;
     }
     /* 문의 섹션 폼 스타일 */
     #contact form {
       max-width: 600px;
       margin: 0 auto;
-      background-color: rgba(51, 51, 51, 0.8);
+      background-color: #fff;
       padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     #contact label {
       display: block;
@@ -122,31 +123,34 @@
     #contact input, #contact textarea {
       width: 100%;
       padding: 10px;
-      border: none;
+      border: 1px solid #ddd;
       border-radius: 4px;
       margin-bottom: 10px;
-      background-color: #444;
-      color: #eee;
+      background-color: #f7f7f7;
+      color: #333;
     }
     #contact button {
       padding: 10px 20px;
-      background-color: #ff5555;
+      background-color: #007bff;
       border: none;
       border-radius: 4px;
       color: #fff;
       font-size: 16px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
     #contact button:hover {
-      background-color: #ff7777;
+      background-color: #0056b3;
+      transform: translateY(-2px);
     }
     /* 푸터 스타일 */
     footer {
-      background: #111;
+      background: #fff;
       padding: 20px;
       text-align: center;
       font-size: 14px;
+      border-top: 1px solid #ddd;
+      color: #666;
     }
     footer .business-info {
       margin-bottom: 10px;
@@ -168,21 +172,20 @@
       opacity: 0.9;
       min-width: 80px;
       text-align: center;
+      background-color: #007bff;
+      color: #fff;
     }
     .floating-button:hover {
       opacity: 1;
     }
     #backToTop {
       bottom: 20px;
-      background: #ff5555;
-      color: #fff;
-      display: none;
+      background: #007bff;
     }
     #kakaoButton {
       bottom: 70px;
-      background: #f7e600;
-      color: #3c1e1e;
-      display: block;
+      background: #ffca28;
+      color: #333;
     }
     /* 스크롤 애니메이션 */
     .scroll-animate {
@@ -194,9 +197,9 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* ★ 카운터 섹션 스타일 ★ */
+    /* 카운터 섹션 스타일 */
     #stats {
-      background-color: #222;
+      background-color: #fff;
       padding: 40px 0;
     }
     #stats .content-container {
@@ -226,20 +229,20 @@
       font-size: 2.5rem;
       margin: 0;
       font-weight: bold;
+      color: #007bff;
     }
     #stats .stat p {
       margin: 10px 0 0;
       font-size: 1.2rem;
     }
-    /* ★ 소개 섹션 ("Protect your business") ★ */
+    /* 소개 섹션 */
     #about {
       position: relative;
-      background-color: #333;
+      background-color: #fff;
       padding: 60px 0;
     }
     #about .section-bg {
-      /* 소개 섹션의 배경 이미지 URL (필요시 변경) */
-      opacity: 0.3;
+      opacity: 0.15;
     }
     #about .content-container h2 {
       font-size: 2.5rem;
@@ -249,10 +252,10 @@
       font-size: 1.2rem;
       margin-bottom: 10px;
     }
-    /* ★ NEWS 섹션 스타일 (아워웹 NEWS 섹션과 유사) ★ */
+    /* NEWS 섹션 */
     #news {
       position: relative;
-      background-color: #333;
+      background-color: #fff;
       padding: 60px 0;
     }
     #news .section-bg {
@@ -263,13 +266,12 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
-      opacity: 0.3;
+      opacity: 0.15;
     }
     #news h2 {
       font-size: 2.5rem;
       margin-bottom: 40px;
     }
-    /* 네 개의 뉴스 아이템을 가로로 나열 */
     #news .news-items {
       display: flex;
       justify-content: center;
@@ -277,14 +279,15 @@
       gap: 20px;
     }
     #news .news-item {
-      background: rgba(0, 0, 0, 0.7);
+      background: #fff;
       padding: 20px;
       border-radius: 8px;
       flex: 1 1 calc(25% - 20px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
     #news .news-item:hover {
-      transform: translateY(-10px);
+      transform: translateY(-5px);
     }
     #news .news-item img {
       width: 100%;
@@ -294,27 +297,24 @@
     #news .news-content h3 {
       font-size: 1.5rem;
       margin-bottom: 10px;
+      color: #007bff;
     }
     #news .news-content p {
       font-size: 1rem;
       margin-bottom: 10px;
     }
     #news .news-content a {
-      color: #ff5555;
+      color: #007bff;
       text-decoration: none;
+      transition: color 0.3s;
     }
     #news .news-content a:hover {
+      color: #0056b3;
       text-decoration: underline;
     }
     
     /* 반응형 디자인 (768px 이하) */
     @media (max-width: 768px) {
-      /* 필요시 미디어 쿼리 내에서 추가 조정 가능 */
-      nav ul {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
       nav ul li {
         margin: 0 10px;
       }
@@ -338,7 +338,6 @@
       #kakaoButton {
         bottom: 65px;
       }
-      /* 카운터 섹션: 요소들을 세로로 배치 */
       #stats .stats-wrapper {
         flex-direction: column;
         gap: 20px;
@@ -348,7 +347,7 @@
       }
     }
     
-    /* 추가 반응형 디자인 (480px 이하) */
+    /* 반응형 디자인 (480px 이하) */
     @media (max-width: 480px) {
       nav ul {
         flex-direction: row;
@@ -394,17 +393,17 @@
     </nav>
   </header>
   
-  <!-- Hero 섹션 (상단 배너) -->
+  <!-- Hero 섹션 -->
   <section id="hero" class="scroll-animate">
     <video class="hero-bg" autoplay muted loop playsinline>
       <source src="image/back/banner_mov.mp4" type="video/mp4">
     </video>
     <div class="content">
-      <!-- 상단 배너 내 텍스트 제거 -->
+      <!-- 필요시 배너 내 텍스트 추가 -->
     </div>
   </section>
   
-  <!-- ★ 카운터 섹션 (누적 삭제건, 고객 만족도, 재의뢰율) ★ -->
+  <!-- 카운터 섹션 -->
   <section id="stats" class="full-width-section scroll-animate">
     <div class="content-container">
       <h2>수많은 기업이 디지털 장의사 앤드를 선택한 이유.</h2>
@@ -425,7 +424,7 @@
     </div>
   </section>
   
-  <!-- ★ 소개 섹션 ("Protect your business") ★ -->
+  <!-- 소개 섹션 -->
   <section id="about" class="full-width-section scroll-animate">
     <img class="section-bg" src="https://example.com/path/to/about-image.jpg" alt="소개 배경 이미지">
     <div class="content-container">
@@ -435,9 +434,8 @@
     </div>
   </section>
   
-  <!-- ★ NEWS 섹션 (아워웹 NEWS 섹션과 유사) ★ -->
+  <!-- NEWS 섹션 -->
   <section id="news" class="full-width-section scroll-animate">
-    <!-- 배경 이미지 (실제 URL로 변경 필요) -->
     <img class="section-bg" src="https://www.ourweb.co.kr/images/news-bg.jpg" alt="NEWS 배경 이미지">
     <div class="content-container">
       <h2>NEWS</h2>
@@ -499,9 +497,8 @@
     </div>
   </section>
   
-  <!-- TOP 버튼 (Back to Top) -->
+  <!-- 플로팅 버튼들 -->
   <button id="backToTop" class="floating-button" onclick="scrollToTop()">▲ Top</button>
-  <!-- KakaoTalk 링크 버튼 -->
   <button id="kakaoButton" class="floating-button" onclick="goToKakao()">KakaoTalk</button>
   
   <!-- 푸터 -->
@@ -528,12 +525,12 @@
       }
     };
 
-    // 부드럽게 최상단으로 스크롤 이동
+    // 부드러운 최상단 스크롤
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
-    // KakaoTalk 버튼 클릭 시 오픈채팅으로 이동
+    // KakaoTalk 오픈채팅 이동
     function goToKakao() {
       window.location.href = "https://open.kakao.com/o/ssKou8xf";
     }
@@ -553,7 +550,7 @@
       scrollElements.forEach(el => observer.observe(el));
     });
     
-    // ★ 카운터 애니메이션 함수 ★
+    // 카운터 애니메이션 함수
     function animateCounter(el, duration = 2000) {
       const target = +el.getAttribute('data-target');
       let start = 0;
@@ -571,7 +568,7 @@
       updateCounter();
     }
 
-    // 카운터 섹션이 보일 때 애니메이션 시작
+    // 카운터 섹션 애니메이션 시작
     document.addEventListener('DOMContentLoaded', function() {
       const statsSection = document.getElementById('stats');
       if (statsSection) {
