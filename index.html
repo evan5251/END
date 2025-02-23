@@ -91,6 +91,8 @@
       margin: 0 auto;
       padding: 0 20px;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
     /* 섹션 배경 이미지 */
     .section-bg {
@@ -101,30 +103,6 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
-    }
-    /* 블로그 포스트 스타일 */
-    .blog-post {
-      margin: 20px 0;
-      text-align: left;
-      background-color: #444;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    }
-    .blog-post h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    .blog-post p {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-    .blog-post a {
-      color: #ff5555;
-      text-decoration: none;
-    }
-    .blog-post a:hover {
-      text-decoration: underline;
     }
     /* 문의 섹션 폼 스타일 */
     #contact form {
@@ -224,11 +202,8 @@
       .content-container p {
         font-size: 16px;
       }
-      .blog-post h3 {
-        font-size: 20px;
-      }
-      .blog-post p {
-        font-size: 14px;
+      #news .news-item {
+        flex: 1 1 calc(50% - 20px);
       }
       .floating-button {
         padding: 8px 12px;
@@ -243,13 +218,12 @@
       }
     }
     
-    /* 스크롤 애니메이션 초기 상태 */
+    /* 스크롤 애니메이션 */
     .scroll-animate {
       opacity: 0;
       transform: translateY(20px);
       transition: all 0.6s ease-out;
     }
-    /* 스크롤 애니메이션 활성 상태 */
     .scroll-animate.active {
       opacity: 1;
       transform: translateY(0);
@@ -273,9 +247,10 @@
     }
     #stats .stats-wrapper {
       display: flex;
+      flex-direction: row;
       justify-content: space-around;
       align-items: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       width: 100%;
     }
     #stats .stat {
@@ -290,6 +265,83 @@
     #stats .stat p {
       margin: 10px 0 0;
       font-size: 1.2rem;
+    }
+    
+    /* ★ 소개 섹션 ("Protect your business") ★ */
+    #about {
+      position: relative;
+      background-color: #333;
+      padding: 60px 0;
+    }
+    #about .section-bg {
+      /* 소개 섹션의 배경 이미지 URL (필요시 변경) */
+      opacity: 0.3;
+    }
+    #about .content-container h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    #about .content-container p {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    
+    /* ★ NEWS 섹션 스타일 (아워웹 NEWS와 유사) ★ */
+    #news {
+      position: relative;
+      background-color: #333;
+      padding: 60px 0;
+    }
+    #news .section-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    #news h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+    /* 네 개의 뉴스 아이템을 가로로 나열 */
+    #news .news-items {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 20px;
+    }
+    #news .news-item {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 8px;
+      flex: 1 1 calc(25% - 20px);
+      transition: transform 0.3s;
+    }
+    #news .news-item:hover {
+      transform: translateY(-10px);
+    }
+    #news .news-item img {
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+    #news .news-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    #news .news-content p {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    #news .news-content a {
+      color: #ff5555;
+      text-decoration: none;
+    }
+    #news .news-content a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -320,7 +372,6 @@
   <!-- ★ 카운터 섹션 (누적 삭제건, 고객 만족도, 재의뢰율) ★ -->
   <section id="stats" class="full-width-section scroll-animate">
     <div class="content-container">
-      <!-- 선택 메시지 추가 -->
       <h2>수많은 기업이 디지털 장의사 앤드를 선택한 이유.</h2>
       <div class="stats-wrapper">
         <div class="stat">
@@ -339,7 +390,7 @@
     </div>
   </section>
   
-  <!-- 소개 섹션 -->
+  <!-- ★ 소개 섹션 ("Protect your business") ★ -->
   <section id="about" class="full-width-section scroll-animate">
     <img class="section-bg" src="https://example.com/path/to/about-image.jpg" alt="소개 배경 이미지">
     <div class="content-container">
@@ -349,17 +400,45 @@
     </div>
   </section>
   
-  <!-- 언론 섹션 -->
-  <section id="blog" class="full-width-section scroll-animate">
-    <img class="section-bg" src="https://example.com/path/to/blog-image.jpg" alt="블로그 배경 이미지">
+  <!-- ★ NEWS 섹션 (아워웹 NEWS 섹션과 유사) ★ -->
+  <section id="news" class="full-width-section scroll-animate">
+    <!-- 배경 이미지 (실제 URL로 변경 필요) -->
+    <img class="section-bg" src="https://www.ourweb.co.kr/images/news-bg.jpg" alt="NEWS 배경 이미지">
     <div class="content-container">
-      <h2>기사로 보는 디지털 장의사 앤드</h2>
-      <p>언론기사로 보는 디지털 장의사 앤드의 소식</p>
-      <div class="blog-post">
-        <h3>디지털 장의사 앤드, 기업평판관리 및 모니터링 서비스 15일간 무상 지원</h3>
-        <p>디지털장의사 앤드는 오는 8월2일까지 의뢰 대상에 한에 의뢰인의 키워드에 맞추어</p>
-        <p>악성 게시물을 모니터링 하여 적발 건을 안내해주는 기업평관관리 모니터링 서비스 15일 무상지원 이벤트를 진행한다.</p>
-        <a href="https://www.woodkorea.co.kr/news/articleView.html?idxno=79602" target="_blank">기사 자세히 보기</a>
+      <h2>NEWS</h2>
+      <div class="news-items">
+        <article class="news-item">
+          <img src="https://www.ourweb.co.kr/images/news1.jpg" alt="뉴스 이미지 1">
+          <div class="news-content">
+            <h3>뉴스 제목 1</h3>
+            <p>뉴스 요약 내용 1...</p>
+            <a href="https://www.example.com/news1" target="_blank">자세히 보기</a>
+          </div>
+        </article>
+        <article class="news-item">
+          <img src="https://www.ourweb.co.kr/images/news2.jpg" alt="뉴스 이미지 2">
+          <div class="news-content">
+            <h3>뉴스 제목 2</h3>
+            <p>뉴스 요약 내용 2...</p>
+            <a href="https://www.example.com/news2" target="_blank">자세히 보기</a>
+          </div>
+        </article>
+        <article class="news-item">
+          <img src="https://www.ourweb.co.kr/images/news3.jpg" alt="뉴스 이미지 3">
+          <div class="news-content">
+            <h3>뉴스 제목 3</h3>
+            <p>뉴스 요약 내용 3...</p>
+            <a href="https://www.example.com/news3" target="_blank">자세히 보기</a>
+          </div>
+        </article>
+        <article class="news-item">
+          <img src="https://www.ourweb.co.kr/images/news4.jpg" alt="뉴스 이미지 4">
+          <div class="news-content">
+            <h3>뉴스 제목 4</h3>
+            <p>뉴스 요약 내용 4...</p>
+            <a href="https://www.example.com/news4" target="_blank">자세히 보기</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
