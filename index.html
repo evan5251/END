@@ -59,10 +59,11 @@
     nav ul li a:hover {
       color: #ff5555;
     }
-    /* Hero Section (상단 배너) */
+    /* Hero Section (상단 배너) - aspect-ratio를 이용해 16:9 비율 유지 */
     #hero {
       position: relative;
-      height: 50vh;
+      width: 100%;
+      aspect-ratio: 16 / 9;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -308,10 +309,7 @@
     
     /* 반응형 디자인 (768px 이하) */
     @media (max-width: 768px) {
-      #hero {
-        height: 40vh;
-        padding-top: 80px;
-      }
+      /* 필요시 미디어 쿼리 내에서 추가 조정 가능 */
       nav ul {
         flex-direction: row;
         flex-wrap: wrap;
@@ -353,10 +351,11 @@
     /* 추가 반응형 디자인 (480px 이하) */
     @media (max-width: 480px) {
       nav ul {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-around;
       }
       nav ul li {
-        margin: 5px 0;
+        margin: 0 5px;
       }
       .content-container {
         padding: 0 10px;
@@ -436,7 +435,7 @@
     </div>
   </section>
   
-  <!-- ★ NEWS 섹션 (아워웹 NEWS와 유사) ★ -->
+  <!-- ★ NEWS 섹션 (아워웹 NEWS 섹션과 유사) ★ -->
   <section id="news" class="full-width-section scroll-animate">
     <!-- 배경 이미지 (실제 URL로 변경 필요) -->
     <img class="section-bg" src="https://www.ourweb.co.kr/images/news-bg.jpg" alt="NEWS 배경 이미지">
