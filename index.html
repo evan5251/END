@@ -60,16 +60,16 @@
     nav ul li a:hover {
       color: #000;
     }
-    /* Hero 섹션 - 동영상 배경 사용, 기본 데스크탑 설정 */
+    /* Hero 섹션 - 데스크탑: 높이 50vh, 상단 여백 70px */
     #hero {
       position: relative;
       width: 100%;
-      height: 60vh; /* 데스크탑: 60vh */
+      height: 50vh;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      margin-top: 70px; /* 헤더 높이 만큼 여백 */
+      margin-top: 70px;
     }
     .hero-bg {
       position: absolute;
@@ -303,7 +303,6 @@
       margin-bottom: 15px;
     }
     /* NEWS 섹션 내 텍스트 스타일 수정: 검은색, 폰트 크기 약간 줄임 */
-    /* 전체 뉴스 내용을 클릭할 수 있도록 .news-content를 a 태그로 사용 */
     #news .news-content {
       display: block;
       text-decoration: none;
@@ -314,7 +313,6 @@
       margin-bottom: 10px;
       color: #000;
     }
-    /* 링크 스타일 제거 */
     #news .news-content:link,
     #news .news-content:visited {
       color: #000;
@@ -333,9 +331,9 @@
       nav ul li {
         margin: 0 10px;
       }
-      /* 모바일에서는 헤더 높이가 줄어들므로 그에 맞춰 상단 여백도 줄임 */
+      /* 모바일: 헤더 높이에 맞춰 상단 배너 높이 조정 */
       #hero {
-        height: 35vh;
+        height: calc(100vh - 50px);
         margin-top: 50px;
       }
       .content-container h2 {
@@ -395,7 +393,7 @@
         padding: 20px;
       }
       #hero {
-        height: 30vh;
+        height: calc(100vh - 40px);
         margin-top: 40px;
       }
     }
@@ -417,7 +415,7 @@
   <!-- Hero 섹션 - 동영상 배경 사용 -->
   <section id="hero" class="scroll-animate">
     <video class="hero-bg" autoplay muted loop playsinline>
-      <source src="image/back/top1.mp4" type="video/mp4">
+      <source src="image/back/topb.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <div class="content">
