@@ -71,6 +71,7 @@
       overflow: hidden;
       margin-top: 70px; /* 헤더 높이 고려 */
     }
+    /* 영상 대신 이미지로 변경 */
     .hero-bg {
       position: absolute;
       top: 0;
@@ -401,11 +402,9 @@
     </nav>
   </header>
   
-  <!-- Hero 섹션 -->
+  <!-- Hero 섹션 - 비디오 대신 이미지 사용 -->
   <section id="hero" class="scroll-animate">
-    <video class="hero-bg" autoplay muted loop playsinline>
-      <source src="image/back/banner_mov.mp4" type="video/mp4">
-    </video>
+    <img class="hero-bg" src="image/back/main.png" alt="Hero Banner">
     <div class="content">
       <!-- 필요시 배너 내 텍스트 추가 -->
     </div>
@@ -414,7 +413,7 @@
   <!-- 카운터 섹션 -->
   <section id="stats" class="full-width-section scroll-animate">
     <div class="content-container">
-      <h2>수많은 기업이 디지털 장의사 앤드를 선택한 이유.</h2>
+      <h2>수많은 의뢰인이 디지털 장의사 앤드를 선택한 이유.</h2>
       <div class="stats-wrapper">
         <div class="stat">
           <h3 id="project-counter" data-target="2194">0</h3>
