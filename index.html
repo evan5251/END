@@ -363,8 +363,7 @@
     
     /* 모바일 대응 (최대폭 480px) */
     @media (max-width: 480px) {
-      /* 배경 이미지의 원본 비율 2000:600 -> 높이 = 100vw * (600/2000)= 100vw * 0.3, 
-         여기서 2배 키워 0.6로 설정 */
+      /* 배경 이미지의 원본 비율 2000:600 -> 높이 = 100vw * 0.6 (기존보다 2배) */
       #hero {
         height: calc(100vw * 0.6);
       }
@@ -389,9 +388,9 @@
       #news .news-item {
         flex: 1 1 100%;
       }
-      /* 모바일에서는 이미지 전체가 보이도록 object-fit을 contain으로 변경 */
-      .hero-image-wrapper img {
-        object-fit: contain;
+      /* 모바일에서는 상단 배너 이미지 감춤 */
+      .hero-image-wrapper {
+        display: none;
       }
     }
     
@@ -408,7 +407,7 @@
       #stats .stats-wrapper { flex-direction: column; gap: 20px; }
       #stats .stat h3 { font-size: 2rem; }
     }
-
+    
     /* ------------------------------------- */
     /* Service 섹션 추가 스타일 */
     /* ------------------------------------- */
