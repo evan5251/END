@@ -362,50 +362,6 @@
       text-decoration: underline;
     }
     
-    /* 모바일 대응 (최대폭 480px) */
-    @media (max-width: 480px) {
-      /* 배경 이미지의 원본 비율 2000:600 -> 높이 = 100vw * 0.6 (기존보다 2배) */
-      #hero {
-        height: calc(100vw * 0.6);
-        display: none; /* 모바일에서는 hero 섹션 자체를 감춤 */
-      }
-      .hero-content {
-        bottom: 20px;
-        padding: 0 10px;
-      }
-      .hero-content button {
-        font-size: 1.1rem;
-        padding: 10px 20px;
-      }
-      .content-container h2 {
-        font-size: 2rem;
-      }
-      .content-container p {
-        font-size: 1rem;
-      }
-      #news .news-items {
-        flex-direction: column;
-        gap: 20px;
-      }
-      #news .news-item {
-        flex: 1 1 100%;
-      }
-    }
-    
-    /* 태블릿 대응 (최대폭 768px) */
-    @media (max-width: 768px) {
-      header { padding: 10px 0; }
-      nav ul li { margin: 0 10px; }
-      .content-container h2 { font-size: 2.2rem; }
-      .content-container p { font-size: 1.1rem; }
-      #news .news-item { flex: 1 1 calc(50% - 20px); }
-      .floating-button { padding: 8px 12px; right: 15px; font-size: 14px; }
-      #backToTop { bottom: 70px; }
-      #kakaoButton { bottom: 20px; }
-      #stats .stats-wrapper { flex-direction: column; gap: 20px; }
-      #stats .stat h3 { font-size: 2rem; }
-    }
-    
     /* ------------------------------------- */
     /* Service 섹션 추가 스타일 - 6개 박스로 수정 */
     /* ------------------------------------- */
@@ -461,6 +417,56 @@
       .info-box {
         flex: 1 1 100%;
         margin: 10px 0;
+      }
+    }
+    
+    /* ------------------------------------- */
+    /* 파트너 섹션 (무한 슬라이드) */
+    /* ------------------------------------- */
+    #partners {
+      background: #000;       /* 배경 검정 */
+      color: #fff;           /* 텍스트 흰색 */
+      padding: 40px 0;
+      text-align: center;
+    }
+    .partners-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    #partners h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    .marquee {
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap; /* 가로 슬라이드 */
+    }
+    .marquee-inner {
+      display: inline-flex;
+      animation: scrollLeft 15s linear infinite; /* 15초마다 왼쪽으로 반복 */
+    }
+    .logo-item {
+      flex: 0 0 auto;
+      margin: 0 30px;
+      display: flex;
+      align-items: center;
+    }
+    .logo-item img {
+      height: 40px;            /* 로고 높이 */
+      filter: grayscale(100%); /* 흑백 처리 */
+      transition: filter 0.3s;
+    }
+    .logo-item img:hover {
+      filter: none;            /* 마우스 오버 시 컬러 */
+    }
+    @keyframes scrollLeft {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
       }
     }
   </style>
@@ -610,7 +616,7 @@
   <section id="contact" class="full-width-section scroll-animate">
     <div class="content-container">
       <h2>Contect</h2>
-      <p>하단 양식을 통한 신속 상담 문의 접수하기</p>
+      <p>하단 양식을 통한 신속 상담 접수하기</p>
       <form action="#" method="post">
         <label for="name">이름</label>
         <input type="text" id="name" name="name" placeholder="이름을 입력해 주세요" required>
@@ -630,10 +636,62 @@
       </form>
     </div>
   </section>
-  
-  <!-- 플로팅 버튼들 -->
-  <button id="backToTop" class="floating-button" onclick="scrollToTop()">▲ Top</button>
-  <button id="kakaoButton" class="floating-button" onclick="goToKakao()">카카오톡 상담</button>
+
+  <!-- 파트너 섹션 (마르키 효과) - 문의 섹션 아래로 이동 -->
+  <section id="partners">
+    <div class="partners-container">
+      <h2>삭제 지원</h2>
+      <div class="marquee">
+        <div class="marquee-inner">
+          <!-- 로고 리스트 1회차 -->
+          <div class="logo-item">
+            <img src="image/partner/naver.png" alt="naver 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/google.png" alt="google 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/facebook.png" alt="facebook 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/instagram.png" alt="instagram 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/kakao.png" alt="KakaoPay 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/tiktok.png" alt="tiktok 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/daum.png" alt="daum 로고">
+          </div>
+          
+          <!-- 로고 리스트 2회차 (무한 루프용 복제) -->
+          <div class="logo-item">
+            <img src="image/partner/naver.png" alt="naver 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/google.png" alt="google 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/facebook.png" alt="facebook 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/instagram.png" alt="instagram 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/kakao.png" alt="KakaoPay 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/tiktok.png" alt="tiktok 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/daum.png" alt="daum 로고">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   
   <!-- 푸터 -->
   <footer class="scroll-animate">
