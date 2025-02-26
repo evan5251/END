@@ -183,6 +183,44 @@
       transform: translateY(-2px);
     }
     
+    /* 파트너 섹션 스타일 (배경 흰색, 텍스트 검정) */
+    #partners {
+      background-color: #fff;
+      color: #000;
+      padding: 40px 0;
+    }
+    .partners-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 90%;
+      text-align: center;
+    }
+    .partners-container h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .marquee {
+      overflow: hidden;
+      position: relative;
+    }
+    .marquee-inner {
+      display: flex;
+      animation: marquee 20s linear infinite;
+    }
+    .logo-item {
+      flex: 0 0 auto;
+      padding: 0 15px;
+    }
+    .logo-item img {
+      max-height: 50px;
+      vertical-align: middle;
+    }
+    @keyframes marquee {
+      0%   { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    
     /* 푸터 스타일 */
     footer {
       background: #fff;
@@ -573,39 +611,6 @@
     </div>
   </section>
   
-  <!-- NEWS 섹션 -->
-  <section id="news" class="full-width-section scroll-animate">
-    <div class="content-container">
-      <h2>NEWS</h2>
-      <div class="news-items">
-        <article class="news-item">
-          <img src="image/NEWS/1.jpg" alt="뉴스 이미지 1">
-          <a href="https://www.woodkorea.co.kr/news/articleView.html?idxno=79602" target="_blank" class="news-content">
-            <h3>기업평판관리 및 모니터링 서비스 15일 무상 지원</h3>
-          </a>
-        </article>
-        <article class="news-item">
-          <img src="image/NEWS/2.jpg" alt="뉴스 이미지 2">
-          <a href="https://www.example.com/news2" target="_blank" class="news-content">
-            <h3>연중무휴 24시 고객지원 서비스 최초 실시</h3>
-          </a>
-        </article>
-        <article class="news-item">
-          <img src="image/NEWS/3.jpg" alt="뉴스 이미지 3">
-          <a href="https://www.example.com/news3" target="_blank" class="news-content">
-            <h3>디지털 장의사 앤드 누적 삭제건 2천건 돌파</h3>
-          </a>
-        </article>
-        <article class="news-item">
-          <img src="image/NEWS/4.png" alt="뉴스 이미지 4">
-          <a href="https://www.example.com/news4" target="_blank" class="news-content">
-            <h3>기업별 전담 지정 담당 기업평판관리 서비스 실행</h3>
-          </a>
-        </article>
-      </div>
-    </div>
-  </section>
-  
   <!-- 문의 섹션 -->
   <section id="contact" class="full-width-section scroll-animate">
     <div class="content-container">
@@ -628,6 +633,62 @@
         
         <button type="submit">문의하기</button>
       </form>
+    </div>
+  </section>
+  
+  <!-- 파트너 섹션 (마르키 효과) - 문의 섹션 아래에 위치 -->
+  <section id="partners">
+    <div class="partners-container">
+      <h2>삭제 지원</h2>
+      <div class="marquee">
+        <div class="marquee-inner">
+          <!-- 로고 리스트 1회차 -->
+          <div class="logo-item">
+            <img src="image/partner/naver.png" alt="naver 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/google.png" alt="google 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/facebook.png" alt="facebook 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/instagram.png" alt="instagram 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/kakao.png" alt="KakaoPay 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/tiktok.png" alt="tiktok 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/daum.png" alt="daum 로고">
+          </div>
+          
+          <!-- 로고 리스트 2회차 (무한 루프용 복제) -->
+          <div class="logo-item">
+            <img src="image/partner/naver.png" alt="naver 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/google.png" alt="google 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/facebook.png" alt="facebook 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/instagram.png" alt="instagram 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/kakao.png" alt="KakaoPay 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/tiktok.png" alt="tiktok 로고">
+          </div>
+          <div class="logo-item">
+            <img src="image/partner/daum.png" alt="daum 로고">
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   
