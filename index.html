@@ -63,20 +63,18 @@
       color: #000;
     }
     
-    /* Hero 섹션 - 배경 이미지 대신 반응형 <img> 요소 사용 */
+    /* Hero 섹션 (반응형 배경 이미지 적용) */
     #hero {
-      position: relative;
-      margin-top: 70px;
-      overflow: hidden;
-    }
-    #hero img {
       width: 100%;
-      height: auto;
-      display: block;
+      min-height: 50vh; /* 필요에 따라 높이 조정 가능 */
+      background: url('image/back/1.png') center center / cover no-repeat;
+      margin-top: 70px;
+      position: relative;
     }
+    /* .hero-content를 절대 위치로 하단 중앙에 배치 (위로 약간 이동) */
     .hero-content {
       position: absolute;
-      bottom: 30px;
+      bottom: 30px; /* 하단에서 30px 위치 */
       left: 50%;
       transform: translateX(-50%);
       z-index: 1;
@@ -84,12 +82,12 @@
       color: #fff;
     }
     .hero-content button {
-      padding: 12px 24px;
+      padding: 12px 24px; /* 버튼 사이즈 증가 */
       background-color: #007bff;
       border: none;
       border-radius: 4px;
       color: #fff;
-      font-size: 1.2rem;
+      font-size: 1.2rem; /* 글자 크기 증가 */
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
     }
@@ -354,9 +352,10 @@
     
     /* 모바일 대응 (최대폭 480px) */
     @media (max-width: 480px) {
-      /* Hero 섹션: 이미지가 반응형으로 조절됨 */
+      /* Hero 섹션: 배너 높이를 늘리고 배경 이미지 중앙 정렬 강화 */
       #hero {
-        /* 별도 추가 스타일 없음 - <img>가 자동으로 조절됩니다. */
+        min-height: 70vh;
+        background-position: center center;
       }
       /* Hero 컨텐츠: 하단 위치를 약간 위로, 패딩 추가 */
       .hero-content {
@@ -412,9 +411,8 @@
     </nav>
   </header>
   
-  <!-- Hero 섹션 - 반응형 이미지 사용 -->
+  <!-- Hero 섹션 (반응형 배경 이미지 적용) -->
   <section id="hero" class="scroll-animate">
-    <img src="image/back/1.png" alt="배너 이미지">
     <div class="hero-content">
       <button onclick="scrollToContact()">문의하기</button>
     </div>
