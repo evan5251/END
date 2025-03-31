@@ -120,7 +120,6 @@
       position: absolute;
       right: 20px;
       top: 120%;
-      /* transform 제거 */
     }
     /* 모바일 메뉴 (기본 숨김) */
     .mobile-menu {
@@ -340,7 +339,7 @@
       margin: 4px 0;
     }
     
-    /* 플로팅 버튼 */
+    /* 플로팅 버튼 기본 스타일 */
     .floating-button {
       position: fixed;
       right: 20px;
@@ -359,14 +358,46 @@
     .floating-button:hover {
       opacity: 1;
     }
+    /* TOP 버튼: 동일한 크기(60×60px)와 원형, Kakao 버튼보다 위에 배치 */
     #backToTop {
-      bottom: 70px;
+      bottom: 90px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      padding: 0 !important;
+      min-width: 0 !important;
+      cursor: pointer;
       background: #007bff;
+      color: #fff;
+      font-size: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    
+    /* 하단 우측 카카오톡 상담 버튼(앵커 태그 사용) - 원형 */
     #kakaoButton {
       bottom: 20px;
-      background: #ffca28;
-      color: #333;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      padding: 0 !important;
+      min-width: 0 !important;
+      cursor: pointer;
+      background: none;
+      font-size: 0;
+      overflow: hidden;
+    }
+    #kakaoButton img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
     }
     
     /* 스크롤 애니메이션 */
@@ -538,7 +569,7 @@
       .content-container p { font-size: 1.1rem; }
       #news .news-item { flex: 1 1 calc(50% - 20px); }
       .floating-button { padding: 8px 12px; right: 15px; font-size: 14px; }
-      #backToTop { bottom: 70px; }
+      #backToTop { bottom: 90px; }
       #kakaoButton { bottom: 20px; }
       #stats .stats-wrapper { flex-direction: column; gap: 20px; }
       #stats .stat h3 { font-size: 2rem; }
@@ -815,8 +846,10 @@
   </section>
   
   <!-- 플로팅 버튼들 -->
-  <button id="backToTop" class="floating-button" onclick="scrollToTop()">▲ Top</button>
-  <button id="kakaoButton" class="floating-button" onclick="goToKakao()">카카오톡 상담</button>
+  <button id="backToTop" class="floating-button" onclick="scrollToTop()">▲</button>
+  <a id="kakaoButton" class="floating-button" href="https://open.kakao.com/o/ssKou8xf" target="_blank">
+    <img src="image/icon/kakao.png" alt="카카오톡 상담">
+  </a>
   
   <!-- 푸터 -->
   <footer class="scroll-animate">
