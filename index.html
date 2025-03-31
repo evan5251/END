@@ -112,6 +112,10 @@
     .desktop-nav ul li a:hover {
       color: #000;
     }
+    /* "공지사항" 링크 변경 */
+    .desktop-nav ul li a.announcement {
+      /* href는 아래에서 적용됩니다. */
+    }
     /* 모바일용 햄버거 메뉴 아이콘 */
     .mobile-menu-icon {
       display: none;
@@ -152,6 +156,10 @@
       color: #000;
       text-decoration: none;
       font-weight: 700;
+    }
+    /* 모바일 "공지사항" 링크 변경 */
+    .mobile-menu ul li a.announcement {
+      /* href는 아래에서 적용됩니다. */
     }
     /* 반응형 내비게이션: 모바일에서는 데스크탑 내비게이션 숨기고 햄버거 및 메뉴 표시 */
     @media (max-width: 767px) {
@@ -358,7 +366,7 @@
     .floating-button:hover {
       opacity: 1;
     }
-    /* TOP 버튼: 동일한 크기(60×60px)와 원형, Kakao 버튼보다 위에 배치 */
+    /* TOP 버튼: Kakao 버튼과 동일한 크기(60px), 완전 원형, Kakao 버튼 위쪽에 배치 */
     #backToTop {
       bottom: 90px;
       right: 20px;
@@ -371,13 +379,13 @@
       cursor: pointer;
       background: #007bff;
       color: #fff;
-      font-size: 35px;
+      font-size: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     
-    /* 하단 우측 카카오톡 상담 버튼(앵커 태그 사용) - 원형 */
+    /* 하단 우측 카카오톡 상담 버튼 (앵커 태그 사용) - 원형 */
     #kakaoButton {
       bottom: 20px;
       right: 20px;
@@ -650,7 +658,7 @@
       <div class="desktop-nav">
         <ul>
           <li><a href="#">고객후기</a></li>
-          <li><a href="#">공지사항</a></li>
+          <li><a href="announcement.html" class="announcement">공지사항</a></li>
           <li><a href="https://blog.naver.com/digitalend/223476514141" target="_blank">블로그</a></li>
           <li><a href="https://cafe.naver.com/deletend" target="_blank">카페</a></li>
           <li><a href="https://www.instagram.com/digitalendstop?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">인스타그램</a></li>
@@ -665,7 +673,7 @@
       <span class="mobile-menu-close" onclick="toggleMobileMenu()">✕</span>
       <ul>
         <li><a href="#">고객후기</a></li>
-        <li><a href="#">공지사항</a></li>
+        <li><a href="announcement.html" class="announcement">공지사항</a></li>
         <li><a href="https://blog.naver.com/digitalend/223476514141" target="_blank">블로그</a></li>
         <li><a href="https://cafe.naver.com/deletend" target="_blank">카페</a></li>
         <li><a href="https://www.instagram.com/digitalendstop?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">인스타그램</a></li>
@@ -846,7 +854,7 @@
   </section>
   
   <!-- 플로팅 버튼들 -->
-  <button id="backToTop" class="floating-button" onclick="scrollToTop()">▲</button>
+  <button id="backToTop" class="floating-button" onclick="scrollToTop()">▲ Top</button>
   <a id="kakaoButton" class="floating-button" href="https://open.kakao.com/o/ssKou8xf" target="_blank">
     <img src="image/icon/kakao.png" alt="카카오톡 상담">
   </a>
