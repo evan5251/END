@@ -1,1 +1,78 @@
-education 준비중
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>디지털 장의사 앤드 양성 상반기 교육</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+      color: #fff;
+      font-family: "Comfortaa", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .word, .clone {
+      position: relative;
+      background: #000;
+      font-size: 55px;
+      line-height: 60px;
+      padding-top: 5px;
+      box-shadow: 0px 0px 15px #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="bg"></div>
+    <div class="word">디지털 장의사  양성 교육</div>
+  </div>
+
+  <!-- GSAP 라이브러리 CDN (애니메이션용) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    const stage = document.querySelector('.stage');
+    const bg = document.querySelector('.bg');
+    const word = document.querySelector('.word');
+    const nClones = 12;
+
+    for (i = 0; i < nClones; i++) {
+      const clone1 = word.cloneNode(true);
+      const clone2 = word.cloneNode(true);
+      bg.prepend(clone1);
+      bg.prepend(clone2);
+      gsap.timeline({
+        repeat: -1,
+        onRepeat: () => { 
+          bg.append(clone1); 
+          bg.append(clone2); 
+        }
+      }).fromTo([clone1, clone2], {
+        position: 'absolute',
+        attr: { class: 'clone' },
+        scaleY: 0.7
+      }, {
+        duration: 4,
+        y: (j) => (j % 2) ? 200 : -200,
+        scaleY: 1.2,
+        ease: 'power3'
+      })
+      .play(i / nClones * 4);
+    }
+  </script>
+</body>
+</html>
