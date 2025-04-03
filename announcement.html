@@ -2,193 +2,179 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slider Example</title>
+  <title>게시판</title>
   <style>
-    @import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
-    @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
-    *, *:before, *:after {
-      box-sizing: border-box;
-    }
-    
-    html, body {
-      height: 100%;
-    }
-    
     body {
-      color: #444;
-      font-family: 'Roboto', sans-serif;
-      font-size: 1rem;
-      line-height: 1.5;
+      font-family: Arial, sans-serif;
+      margin: 20px;
     }
-    
-    .slider {
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-flex-flow: row nowrap;
-          -ms-flex-flow: row nowrap;
-              flex-flow: row nowrap;
-      -webkit-box-align: end;
-      -webkit-align-items: flex-end;
-          -ms-flex-align: end;
-              align-items: flex-end;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-          -ms-flex-pack: center;
-              justify-content: center;
+    /* 배너 영역 */
+    #banner img {
+      width: 100%;
+      height: auto;
     }
-    
-    .slider__nav {
-      width: 12px;
-      height: 12px;
-      margin: 2rem 12px;
-      border-radius: 50%;
-      z-index: 10;
-      outline: 6px solid #ccc;
-      outline-offset: -6px;
-      box-shadow: 0 0 0 0 #333, 0 0 0 0 rgba(51, 51, 51, 0);
-      cursor: pointer;
-      -webkit-appearance: none;
-         -moz-appearance: none;
-              appearance: none;
-      -webkit-backface-visibility: hidden;
-              backface-visibility: hidden;
+    /* 공지사항 제목 스타일 */
+    .notice-title {
+      font-weight: bold;
+      font-size: 24px;
+      margin: 20px 0;
     }
-    
-    .slider__nav:checked {
-      -webkit-animation: check 0.4s linear forwards;
-              animation: check 0.4s linear forwards;
+    /* 게시글 표 스타일 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
     }
-    
-    .slider__nav:checked:nth-of-type(1) ~ .slider__inner {
-      left: 0%;
-    }
-    .slider__nav:checked:nth-of-type(2) ~ .slider__inner {
-      left: -100%;
-    }
-    .slider__nav:checked:nth-of-type(3) ~ .slider__inner {
-      left: -200%;
-    }
-    .slider__nav:checked:nth-of-type(4) ~ .slider__inner {
-      left: -300%;
-    }
-    
-    .slider__inner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 400%;
-      height: 100%;
-      -webkit-transition: left 0.4s;
-      transition: left 0.4s;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-flex-flow: row nowrap;
-          -ms-flex-flow: row nowrap;
-              flex-flow: row nowrap;
-    }
-    
-    .slider__contents {
-      height: 100%;
-      padding: 2rem;
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
       text-align: center;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-          -ms-flex: 1;
-              flex: 1;
-      -webkit-flex-flow: column nowrap;
-          -ms-flex-flow: column nowrap;
-              flex-flow: column nowrap;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-          -ms-flex-pack: center;
-              justify-content: center;
     }
-    
-    .slider__image {
-      font-size: 2.7rem;
-      color: #2196F3;
+    th {
+      background-color: #f2f2f2;
     }
-    
-    .slider__caption {
-      font-weight: 500;
-      margin: 2rem 0 1rem;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-      text-transform: uppercase;
+    /* 관리자 로그인 및 게시글 작성 폼 */
+    #adminSection {
+      margin-top: 20px;
     }
-    
-    .slider__txt {
-      color: #999;
-      margin-bottom: 3rem;
-      max-width: 300px;
+    #postForm {
+      margin-top: 20px;
+      display: none; /* 기본은 숨김 처리 */
     }
-    
-    @-webkit-keyframes check {
-      50% {
-        outline-color: #333;
-        box-shadow: 0 0 0 12px #333, 0 0 0 36px rgba(51, 51, 51, 0.2);
-      }
-      100% {
-        outline-color: #333;
-        box-shadow: 0 0 0 0 #333, 0 0 0 0 rgba(51, 51, 51, 0);
-      }
+    #postForm label {
+      margin-right: 10px;
     }
-    
-    @keyframes check {
-      50% {
-        outline-color: #333;
-        box-shadow: 0 0 0 12px #333, 0 0 0 36px rgba(51, 51, 51, 0.2);
-      }
-      100% {
-        outline-color: #333;
-        box-shadow: 0 0 0 0 #333, 0 0 0 0 rgba(51, 51, 51, 0);
-      }
+    #postForm input,
+    #postForm textarea {
+      margin-right: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="slider">
-    <input type="radio" name="slider" title="slide1" checked="checked" class="slider__nav"/>
-    <input type="radio" name="slider" title="slide2" class="slider__nav"/>
-    <input type="radio" name="slider" title="slide3" class="slider__nav"/>
-    <input type="radio" name="slider" title="slide4" class="slider__nav"/>
-    <div class="slider__inner">
-      <div class="slider__contents">
-        <i class="slider__image fa fa-codepen"></i>
-        <h2 class="slider__caption">디지털 장의사 양성 교육</h2>
-        <p class="slider__txt">디지털 장의사 앤드의 최초 상반기 창업 양성 교육, 교육부터 실전에 이르고 창업까지 올인원 패키지</p>
-      </div>
-      <div class="slider__contents">
-        <i class="slider__image fa fa-newspaper-o"></i>
-        <h2 class="slider__caption">디지털 장의사 양성 교육</h2>
-        <p class="slider__txt">디지털 장의사 앤드의 최초 상반기 창업 양성 교육, 교육부터 실전에 이르고 창업까지 올인원 패키지</p>
-      </div>
-      <div class="slider__contents">
-        <i class="slider__image fa fa-television"></i>
-        <h2 class="slider__caption">디지털 장의사 양성 교육</h2>
-        <p class="slider__txt">디지털 장의사 앤드의 최초 상반기 창업 양성 교육, 교육부터 실전에 이르고 창업까지 올인원 패키지</p>
-      </div>
-      <div class="slider__contents">
-        <i class="slider__image fa fa-diamond"></i>
-        <h2 class="slider__caption">디지털 장의사 양성 교육</h2>
-        <p class="slider__txt">디지털 장의사 앤드의 최초 상반기 창업 양성 교육, 교육부터 실전에 이르고 창업까지 올인원 패키지</p>
-      </div>
-    </div>
+
+  <!-- 배너 영역: src에 원하는 배너 디자인의 URL 또는 코드를 삽입 -->
+  <div id="banner">
+    <img src="여기에_배너_URL_또는_SRC코드_삽입" alt="배너 디자인">
   </div>
+
+  <!-- 공지사항 제목 -->
+  <div class="notice-title">공지사항</div>
+
+  <!-- 게시글 표 -->
+  <table id="boardTable">
+    <thead>
+      <tr>
+        <th>작성일</th>
+        <th>제목</th>
+        <th>NO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 작성된 게시글이 여기에 추가됩니다. -->
+    </tbody>
+  </table>
+
+  <!-- 관리자 로그인 영역 -->
+  <div id="adminSection">
+    <button id="loginBtn">관리자 로그인</button>
+  </div>
+
+  <!-- 게시글 작성 폼 (관리자 전용) -->
+  <form id="postForm">
+    <label for="date">작성일:</label>
+    <input type="date" id="date" required>
+    <label for="title">제목:</label>
+    <input type="text" id="title" placeholder="제목을 입력하세요" required>
+    <label for="content">내용:</label>
+    <textarea id="content" placeholder="내용을 입력하세요" required></textarea>
+    <button type="submit">글 작성</button>
+  </form>
+
+  <script>
+    // 관리자 로그인 기능 (간단한 예제)
+    const adminPassword = "admin123"; // 관리자 패스워드 (실제 운영환경에서는 서버측 인증을 사용해야 합니다)
+    document.getElementById('loginBtn').addEventListener('click', function() {
+      const inputPwd = prompt("관리자 패스워드를 입력하세요:");
+      if (inputPwd === adminPassword) {
+        alert("관리자 로그인 성공!");
+        document.getElementById('postForm').style.display = 'block';
+        document.getElementById('loginBtn').style.display = 'none';
+      } else {
+        alert("패스워드가 틀렸습니다.");
+      }
+    });
+
+    // 게시글 작성 및 테이블 추가 기능
+    let postCount = 0;
+
+    // 게시글 추가 함수
+    function addPost(postData) {
+      // 새 테이블 행 생성
+      const newRow = document.createElement('tr');
+
+      // 작성일 셀 생성
+      const dateCell = document.createElement('td');
+      dateCell.textContent = postData.date;
+      newRow.appendChild(dateCell);
+
+      // 제목 셀 생성 (클릭 시 상세 페이지로 이동)
+      const titleCell = document.createElement('td');
+      const titleLink = document.createElement('a');
+      titleLink.href = "detail.html?id=" + postData.id;
+      titleLink.textContent = postData.title;
+      titleCell.appendChild(titleLink);
+      newRow.appendChild(titleCell);
+
+      // NO 셀 생성
+      const noCell = document.createElement('td');
+      noCell.textContent = postData.id;
+      newRow.appendChild(noCell);
+
+      // 테이블의 tbody에 새 행 추가
+      document.querySelector('#boardTable tbody').appendChild(newRow);
+    }
+
+    document.getElementById('postForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // 폼에서 입력 값 가져오기
+      const dateValue = document.getElementById('date').value;
+      const titleValue = document.getElementById('title').value;
+      const contentValue = document.getElementById('content').value;
+      postCount++;
+
+      // 게시글 데이터를 객체로 생성
+      const postData = {
+        date: dateValue,
+        title: titleValue,
+        content: contentValue,
+        id: postCount
+      };
+
+      // 게시글 데이터를 localStorage에 저장 (간단한 저장 방식)
+      localStorage.setItem('post_' + postCount, JSON.stringify(postData));
+
+      // 테이블에 새 게시글 추가
+      addPost(postData);
+
+      // 폼 초기화
+      this.reset();
+    });
+
+    // 페이지 로딩 시 기존에 저장된 게시글 불러오기 (옵션)
+    window.addEventListener('load', function() {
+      // 게시글이 여러 개일 경우 localStorage의 키를 순회하면서 불러옴
+      for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key) && key.startsWith('post_')) {
+          const postData = JSON.parse(localStorage.getItem(key));
+          // 업데이트된 postCount 값 유지
+          if (postData.id > postCount) {
+            postCount = postData.id;
+          }
+          addPost(postData);
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
