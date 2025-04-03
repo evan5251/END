@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 상세보기</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .post-detail {
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+    .post-detail h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="post-detail">
+    <h2 id="postTitle">제목</h2>
+    <p><strong>작성일:</strong> <span id="postDate"></span></p>
+    <p id="postContent">내용</p>
+  </div>
+
+  <script>
+    // URL의 쿼리 매개변수를 가져오는 함수
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);ㄴ
+      return urlParams.get(param);
+    }
+
+    // 페이지 로딩 시 게시글 데이터 로드
+    window.addEventListener('load', function() {
+      const postId = getQueryParam('id');
+      if (postId) {
+        const postData = localStorage.getItem('post_' + postId);
+        if (postData) {
+          const post = JSON.parse(postData);
+          document.getElementById('postTitle').textContent = post.title;
+          document.getElementById('postDate').textContent = post.date;
+          document.getElementById('postContent').textContent = post.content;
+        } else {
+          document.querySelector('.post-detail').innerHTML = '<p>게시글을 찾을 수 없습니다.</p>';
+        }
+      } else {
+        document.querySelector('.post-detail').innerHTML = '<p>잘못된 접근입니다.</p>';
+      }
+    });
+  </script>
+
+</body>
+</html>
