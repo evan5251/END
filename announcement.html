@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>게시판</title>
+  <!-- Backendless JavaScript SDK -->
+  <script src="https://api.backendless.com/v1/backendless.min.js"></script>
+  <!-- SDK 초기화 코드 -->
+  <script>
+    // Backendless 초기화: 아래 APP_ID와 JS API key를 Backendless 콘솔에서 복사한 값으로 대체
+    // Application ID: E47C2FEC-1C8E-45A0-AAAC-B426A4F1784B
+    // JS API key: B551ED99-8F85-46AA-B6CB-C70CDC528860
+    Backendless.initApp("E47C2FEC-1C8E-45A0-AAAC-B426A4F1784B", "B551ED99-8F85-46AA-B6CB-C70CDC528860");
+  </script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -32,26 +41,22 @@
     th {
       background-color: #f2f2f2;
     }
-    /* 관리자 로그인 및 게시글 작성 폼 */
-    #adminSection {
+    /* 영역 스타일 */
+    #loginSection, #postForm {
       margin-top: 20px;
     }
+    /* 게시글 작성 폼 기본 숨김 */
     #postForm {
-      margin-top: 20px;
-      display: none; /* 기본은 숨김 처리 */
+      display: none;
     }
-    #postForm label {
-      margin-right: 10px;
-    }
-    #postForm input,
-    #postForm textarea {
+    #loginSection input, #postForm input, #postForm textarea {
       margin-right: 10px;
     }
   </style>
 </head>
 <body>
 
-  <!-- 배너 영역: src에 원하는 배너 디자인의 URL 또는 코드를 삽입 -->
+  <!-- 배너 영역 -->
   <div id="banner">
     <img src="image/back/2.png" alt="배너 디자인">
   </div>
@@ -69,13 +74,18 @@
       </tr>
     </thead>
     <tbody>
-      <!-- 작성된 게시글이 여기에 추가됩니다. -->
+      <!-- 게시글이 추가됩니다 -->
     </tbody>
   </table>
 
-  <!-- 관리자 로그인 영역 -->
-  <div id="adminSection">
-    <button id="loginBtn">작성</button>
+  <!-- 관리자 로그인 영역 (Backendless Auth 사용) -->
+  <div id="loginSection">
+    <h2>관리자 로그인</h2>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="이메일" required>
+      <input type="password" id="password" placeholder="비밀번호" required>
+      <button type="submit">로그인</button>
+    </form>
   </div>
 
   <!-- 게시글 작성 폼 (관리자 전용) -->
@@ -90,33 +100,36 @@
   </form>
 
   <script>
-    // 관리자 로그인 기능 (간단한 예제)
-    const adminPassword = "iiuukoda127"; // 관리자 패스워드 (실제 운영환경에서는 서버측 인증을 사용해야 합니다)
-    document.getElementById('loginBtn').addEventListener('click', function() {
-      const inputPwd = prompt("관리자 패스워드를 입력하세요:");
-      if (inputPwd === adminPassword) {
-        alert("관리자 로그인 성공!");
-        document.getElementById('postForm').style.display = 'block';
-        document.getElementById('loginBtn').style.display = 'none';
-      } else {
-        alert("패스워드가 틀렸습니다.");
-      }
+    // Backendless를 이용한 관리자 로그인 처리
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Backendless UserService.login 호출 (세션 유지 옵션 true)
+      Backendless.UserService.login(email, password, true)
+        .then(function(loggedInUser) {
+          alert("로그인 성공!");
+          // 로그인 성공 시, 게시글 작성 폼을 표시하고 로그인 영역은 숨김 처리
+          document.getElementById('postForm').style.display = 'block';
+          document.getElementById('loginSection').style.display = 'none';
+        })
+        .catch(function(error) {
+          alert("로그인 실패: " + error.message);
+        });
     });
 
-    // 게시글 작성 및 테이블 추가 기능
+    // 게시글 작성 및 테이블 추가 기능 (localStorage 사용 예제)
     let postCount = 0;
 
     // 게시글 추가 함수
     function addPost(postData) {
-      // 새 테이블 행 생성
       const newRow = document.createElement('tr');
 
-      // 작성일 셀 생성
       const dateCell = document.createElement('td');
       dateCell.textContent = postData.date;
       newRow.appendChild(dateCell);
 
-      // 제목 셀 생성 (클릭 시 상세 페이지로 이동)
       const titleCell = document.createElement('td');
       const titleLink = document.createElement('a');
       titleLink.href = "detail.html?id=" + postData.id;
@@ -124,25 +137,21 @@
       titleCell.appendChild(titleLink);
       newRow.appendChild(titleCell);
 
-      // NO 셀 생성
       const noCell = document.createElement('td');
       noCell.textContent = postData.id;
       newRow.appendChild(noCell);
 
-      // 테이블의 tbody에 새 행 추가
       document.querySelector('#boardTable tbody').appendChild(newRow);
     }
 
     document.getElementById('postForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // 폼에서 입력 값 가져오기
       const dateValue = document.getElementById('date').value;
       const titleValue = document.getElementById('title').value;
       const contentValue = document.getElementById('content').value;
       postCount++;
 
-      // 게시글 데이터를 객체로 생성
       const postData = {
         date: dateValue,
         title: titleValue,
@@ -150,26 +159,18 @@
         id: postCount
       };
 
-      // 게시글 데이터를 localStorage에 저장 (간단한 저장 방식)
+      // 간단한 저장 방식: localStorage에 게시글 저장
       localStorage.setItem('post_' + postCount, JSON.stringify(postData));
-
-      // 테이블에 새 게시글 추가
       addPost(postData);
-
-      // 폼 초기화
       this.reset();
     });
 
-    // 페이지 로딩 시 기존에 저장된 게시글 불러오기 (옵션)
+    // 페이지 로딩 시 기존 게시글 불러오기 (옵션)
     window.addEventListener('load', function() {
-      // 게시글이 여러 개일 경우 localStorage의 키를 순회하면서 불러옴
       for (let key in localStorage) {
         if (localStorage.hasOwnProperty(key) && key.startsWith('post_')) {
           const postData = JSON.parse(localStorage.getItem(key));
-          // 업데이트된 postCount 값 유지
-          if (postData.id > postCount) {
-            postCount = postData.id;
-          }
+          if (postData.id > postCount) postCount = postData.id;
           addPost(postData);
         }
       }
